@@ -117,7 +117,3 @@ def automate_process_clipboard():
 automate_process_clipboard()
 
 
-  
-
-
-
