@@ -105,7 +105,10 @@ def automate_process(input_latex):
     text = re.sub(r'\$\$\*\*(\w+?)\.\*\*',r'$$\n**\1.**',text,flags=re.DOTALL)
     text = re.sub(r'\$\$```',r'$$\n```',text,flags=re.DOTALL)
     text = text.replace("$).",").$")
-    replace ```(?!\w)\n+?(?=.) with ```\n\n
+    text = re.sub(r'```(?!\w)\n+?(?=.)', r'```\n\n', text, flags=re.DOTALL)
+    text = re.sub(r'\s*\n*\$\$\s*(.*?)\s*?\$\$(?!\W)\n*\s*(?!\W)', r'$$\1$$', text, flags=re.DOTALL)
+    text = re.sub(r'\$\$\s*?\#', r'$$\n\n#', text, flags=re.DOTALL)
+    text = re.sub(r'\$\$\s*?-', r'$$\n-', text, flags=re.DOTALL)
     return text
 
 
@@ -115,5 +118,4 @@ def automate_process_clipboard():
 
 # copy_to_clipboard(latex)
 automate_process_clipboard()
-
 
